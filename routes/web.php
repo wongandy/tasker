@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as Admin;
+use App\Http\Controllers\User\DashboardController as User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.',
+        'middleware' => 'is_admin',
+    ], function () {
+        Route::get('/dashboard', [Admin::class, 'index'])->name('dashboard');
+    });
+
+    Route::group([
+        'prefix' => 'user',
+        'as' => 'user.',
+        'middleware' => 'is_user',
+    ], function () {
+        Route::get('/dashboard', [User::class, 'index'])->name('dashboard');
+    });
+});
 
 require __DIR__.'/auth.php';
