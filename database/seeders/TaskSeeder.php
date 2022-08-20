@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Task;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class AdminSeeder extends Seeder
+class TaskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +15,6 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(3)->create([
-            'is_admin' => true
-        ]);
+        Task::factory(10)->create();
     }
 }
