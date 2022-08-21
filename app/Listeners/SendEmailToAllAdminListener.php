@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\SendEmailToAllAdminNotification;
 
-class SendEmailToAllAdminListener
+class SendEmailToAllAdminListener implements ShouldQueue
 {
     /**
      * Create the event listener.
