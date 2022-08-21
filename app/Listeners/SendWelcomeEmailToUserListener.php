@@ -7,7 +7,7 @@ use App\Notifications\SendWelcomeEmailToUserNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class SendWelcomeEmailToUserListener
+class SendWelcomeEmailToUserListener implements ShouldQueue
 {
     /**
      * Create the event listener.
