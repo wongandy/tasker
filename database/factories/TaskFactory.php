@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Statuses;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +20,10 @@ class TaskFactory extends Factory
     {
         return [
             'name' => fake()->sentence(4),
-            'details' => fake()->paragraph(),
-            'user_id' => User::where('is_admin', true)->get()->random()->id
+            'details' => fake()->sentence(1),
+            'user_id' => User::where('is_admin', false)->get()->random()->id,
+            'created_by' => User::where('is_admin', true)->get()->random()->id,
+            'status_id' => Statuses::where('name', 'Not yet started')->first()->id,
         ];
     }
 }
