@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Statuses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
@@ -12,7 +13,10 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with('user')->latest()->orderByDesc('id')->paginate(5);
+        $tasks = Task::with('user')
+                        ->where('created_by', auth()->user()->id)
+                        ->latest()
+                        ->paginate(5);
 
         return view('admin.tasks.index', compact('tasks'));
     }
@@ -26,7 +30,13 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request)
     {
-        Task::create($request->validated());
+        Task::create([
+            'user_id' => $request->user_id,
+            'created_by' => auth()->user()->id,
+            'name' => $request->name,
+            'details' => $request->details,
+            'status_id' => Statuses::where('name', 'Not yet started')->first()->id,
+        ]);
 
         return redirect()->route('admin.tasks');
     }

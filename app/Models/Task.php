@@ -11,8 +11,10 @@ class Task extends Model
 
     protected $fillable = [
         'user_id',
+        'created_by',
         'name',
-        'details'
+        'details',
+        'status_id',
     ];
 
     public function user()
@@ -20,8 +22,18 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
     public function isOwnedBy()
     {
         return $this->user_id == auth()->user()->id;
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Statuses::class);
     }
 }
