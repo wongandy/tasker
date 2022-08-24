@@ -24,4 +24,9 @@ class TaskPolicy
     {
         return $user->id === $task->user_id;
     }
+
+    public function view(User $user, Task $task)
+    {
+        return $user->id === $task->createdBy->id;
+    }
 }
