@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Task;
 use App\Models\User;
-use App\Models\Statuses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
@@ -35,7 +34,7 @@ class TaskController extends Controller
             'created_by' => auth()->user()->id,
             'name' => $request->name,
             'details' => $request->details,
-            'status_id' => Statuses::where('name', 'Not yet started')->first()->id,
+            'status_id' => Task::NOT_STARTED,
         ]);
 
         return redirect()->route('admin.tasks');
@@ -66,5 +65,35 @@ class TaskController extends Controller
         $task->delete();
 
         return redirect()->route('admin.tasks');
+    }
+
+    public function started()
+    {
+        $tasks = Task::where('created_by', auth()->user()->id)
+                    ->where('status_id', Task::STARTED)
+                    ->latest()
+                    ->paginate(5);
+
+        return view('admin.tasks.started', compact('tasks'));
+    }
+
+    public function notStarted()
+    {
+        $tasks = Task::where('created_by', auth()->user()->id)
+                    ->where('status_id', Task::NOT_STARTED)
+                    ->latest()
+                    ->paginate(5);
+
+        return view('admin.tasks.not-started', compact('tasks'));
+    }
+
+    public function completed()
+    {
+        $tasks = Task::where('created_by', auth()->user()->id)
+                    ->where('status_id', Task::COMPLETED)
+                    ->latest()
+                    ->paginate(5);
+
+        return view('admin.tasks.completed', compact('tasks'));
     }
 }

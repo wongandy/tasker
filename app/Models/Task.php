@@ -9,6 +9,10 @@ class Task extends Model
 {
     use HasFactory;
 
+    CONST NOT_STARTED = 1;
+    CONST STARTED = 2;
+    CONST COMPLETED = 3;
+
     protected $fillable = [
         'user_id',
         'created_by',
