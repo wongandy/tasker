@@ -26,7 +26,14 @@ class StoreTaskRequest extends FormRequest
         return [
             'user_id' => 'required',
             'name' => 'required',
-            'details' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'user_id.required' => 'The assign to field is required.',
+            'name.required' => 'The task field is required.',
         ];
     }
 }

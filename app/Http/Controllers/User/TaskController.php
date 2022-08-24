@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with('user', 'status')
+        $tasks = Task::with('status')
                     ->where('user_id', auth()->user()->id)
                     ->orderByDesc('id')
                     ->paginate(5);
@@ -33,5 +33,38 @@ class TaskController extends Controller
         $task->update($request->validated());
 
         return redirect()->route('user.tasks');
+    }
+
+    public function started()
+    {
+        $tasks = Task::with('user', 'status')
+                    ->where('user_id', auth()->user()->id)
+                    ->where('status_id', Task::STARTED)
+                    ->latest()
+                    ->paginate(5);
+
+        return view('user.tasks.started', compact('tasks'));
+    }
+
+    public function notStarted()
+    {
+        $tasks = Task::with('user', 'status')
+                    ->where('user_id', auth()->user()->id)
+                    ->where('status_id', Task::NOT_STARTED)
+                    ->latest()
+                    ->paginate(5);
+
+        return view('user.tasks.not-started', compact('tasks'));
+    }
+
+    public function completed()
+    {
+        $tasks = Task::with('user', 'status')
+                    ->where('user_id', auth()->user()->id)
+                    ->where('status_id', Task::COMPLETED)
+                    ->latest()
+                    ->paginate(5);
+
+        return view('user.tasks.completed', compact('tasks'));
     }
 }
