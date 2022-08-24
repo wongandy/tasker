@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with('user')
+        $tasks = Task::with('user', 'status')
                         ->where('created_by', auth()->user()->id)
                         ->latest()
                         ->paginate(5);
