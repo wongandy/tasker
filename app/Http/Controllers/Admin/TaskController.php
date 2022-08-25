@@ -40,6 +40,13 @@ class TaskController extends Controller
         return redirect()->route('admin.tasks');
     }
 
+    public function show(Task $task)
+    {
+        $this->authorize('view', $task);
+
+        return view('admin.tasks.show', compact('task'));
+    }
+
     public function edit(Task $task)
     {
         $this->authorize('edit', $task);

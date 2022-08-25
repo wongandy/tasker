@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\CompletedTaskEvent;
 use App\Models\Task;
 use App\Models\User;
 use App\Models\Statuses;
@@ -30,6 +31,8 @@ class TaskController extends Controller
     public function update(UpdateUserTaskRequest $request, Task $task)
     {
         $task->update($request->validated());
+
+        event(new CompletedTaskEvent($task));
 
         return redirect()->route('user.tasks');
     }

@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tasks', [AdminTask::class, 'index'])->name('tasks');
         Route::post('/tasks', [AdminTask::class, 'store'])->name('tasks.store');
         Route::get('/tasks/create', [AdminTask::class, 'create'])->name('tasks.create');
+        Route::get('/tasks/{task}', [AdminTask::class, 'show'])->name('tasks.show');
         Route::get('/tasks/edit/{task}', [AdminTask::class, 'edit'])->name('tasks.edit');
         Route::put('/tasks/update/{task}', [AdminTask::class, 'update'])->name('tasks.update');
         Route::delete('/tasks/delete/{task}', [AdminTask::class, 'destroy'])->name('tasks.delete');
