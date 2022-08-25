@@ -49,6 +49,11 @@ And if you wish to run seeders
 ```bash
   php artisan db:seed
 ```
+To check for jobs in the queue 
+
+```bash
+  php artisan queue:work
+```
 
 
 
