@@ -1,5 +1,21 @@
 # Tasker
+
 A web app for assigning tasks to users.
+
+
+## Features
+- Admins can create and assign tasks to users.
+- Admins can view the statuses of assigned tasks.
+- Admins will receive email whenever new users are registered.
+- Admins will receive email whenever a user has completed a task.
+- Users can change the status of their tasks.
+
+
+## Tech Stack
+
+**Front-end framework:** TailwindCSS
+
+**Back-end framework:** Laravel
 
 ## Installation
 
