@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\CompletedTaskEvent;
 use App\Events\RegisteredUserEvent;
 use App\Listeners\SendEmailToAllAdminListener;
+use App\Listeners\SendEmailToAssignerListener;
 use App\Listeners\SendWelcomeEmailToUserListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         RegisteredUserEvent::class => [
             SendWelcomeEmailToUserListener::class,
             SendEmailToAllAdminListener::class
+        ],
+        CompletedTaskEvent::class => [
+            SendEmailToAssignerListener::class
         ]
     ];
 

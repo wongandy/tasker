@@ -18,7 +18,7 @@ class StatusSeeder extends Seeder
         DB::table('statuses')->insert([
             ['name' => 'Not yet started', 'created_at' => now()],
             ['name' => 'Started', 'created_at' => now()],
-            ['name' => 'Finished', 'created_at' => now()],
+            ['name' => 'Completed', 'created_at' => now()],
         ]);
     }
 }
