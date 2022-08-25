@@ -1,3 +1,5 @@
+# Tasker
+A web app for assigning tasks to users.
 
 ## Installation
 
@@ -31,3 +33,7 @@ And if you wish to run seeders
 ```bash
   php artisan db:seed
 ```
+
+
+
+
