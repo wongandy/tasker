@@ -17,9 +17,6 @@ A web app for assigning tasks to users.
 
 **Back-end framework:** Laravel
 
-# Tasker
-A web app for assigning tasks to users.
-
 ## Installation
 
 First, install backend dependencies
