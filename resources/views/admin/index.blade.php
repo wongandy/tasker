@@ -19,7 +19,7 @@
                         </div>
 
                         <div>
-                            Total assigned tasks not yet started: <a class="text-blue-500" href="{{ route('admin.tasks.not_started') }}">{{ $totalAssignedTasksNotYetStarted }}</a>
+                            Total assigned tasks not started: <a class="text-blue-500" href="{{ route('admin.tasks.not_started') }}">{{ $totalAssignedTasksNotStarted }}</a>
                         </div>
 
                         <div>

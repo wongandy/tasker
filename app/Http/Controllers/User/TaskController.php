@@ -4,7 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Events\CompletedTaskEvent;
 use App\Models\Task;
-use App\Models\User;
 use App\Models\Statuses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserTaskRequest;
@@ -13,10 +12,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::with('createdBy', 'status')
-                    ->where('user_id', auth()->user()->id)
-                    ->orderByDesc('id')
-                    ->paginate(5);
+        $tasks = Task::with('createdBy', 'status')->latest()->paginate(5);
 
         return view('user.tasks.index', compact('tasks'));
     }
@@ -40,8 +36,7 @@ class TaskController extends Controller
     public function started()
     {
         $tasks = Task::with('createdBy', 'status')
-                    ->where('user_id', auth()->user()->id)
-                    ->where('status_id', Task::STARTED)
+                    ->started()
                     ->latest()
                     ->paginate(5);
 
@@ -51,8 +46,7 @@ class TaskController extends Controller
     public function notStarted()
     {
         $tasks = Task::with('createdBy', 'status')
-                    ->where('user_id', auth()->user()->id)
-                    ->where('status_id', Task::NOT_STARTED)
+                    ->notStarted()
                     ->latest()
                     ->paginate(5);
 
@@ -62,8 +56,7 @@ class TaskController extends Controller
     public function completed()
     {
         $tasks = Task::with('createdBy', 'status')
-                    ->where('user_id', auth()->user()->id)
-                    ->where('status_id', Task::COMPLETED)
+                    ->completed()
                     ->latest()
                     ->paginate(5);
 

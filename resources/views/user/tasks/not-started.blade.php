@@ -1,7 +1,7 @@
 <x-user-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tasks Not Yet Started') }} ({{ $tasks->count() }})
+            {{ __('Tasks Not Started') }} ({{ $tasks->count() }})
         </h2>
     </x-slot>
 

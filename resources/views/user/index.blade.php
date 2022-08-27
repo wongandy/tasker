@@ -14,7 +14,7 @@
                     </div>
 
                     <div>
-                        Total tasks not yet started: <a class="text-blue-500" href="{{ route('user.tasks.not_started') }}">{{ $totalTasksNotYetStarted }}</a>
+                        Total tasks not started: <a class="text-blue-500" href="{{ route('user.tasks.not_started') }}">{{ $totalTasksNotStarted }}</a>
                     </div>
 
                     <div>

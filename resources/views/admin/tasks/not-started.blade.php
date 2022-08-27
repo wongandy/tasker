@@ -1,7 +1,7 @@
 <x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Assigned Tasks Not Yet Started') }} ({{ $tasks->total() }})
+            {{ __('Assigned Tasks Not Started') }} ({{ $tasks->total() }})
         </h2>
     </x-slot>
 
