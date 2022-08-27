@@ -13,7 +13,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::with('user', 'status')
-                        ->where('created_by', auth()->user()->id)
+                        ->withoutGlobalScope('user')
+                        ->totalAssignedTasks()
                         ->latest()
                         ->paginate(5);
 
@@ -76,8 +77,7 @@ class TaskController extends Controller
 
     public function started()
     {
-        $tasks = Task::where('created_by', auth()->user()->id)
-                    ->where('status_id', Task::STARTED)
+        $tasks = Task::totalAssignedTasksStarted()
                     ->latest()
                     ->paginate(5);
 
@@ -86,8 +86,7 @@ class TaskController extends Controller
 
     public function notStarted()
     {
-        $tasks = Task::where('created_by', auth()->user()->id)
-                    ->where('status_id', Task::NOT_STARTED)
+        $tasks = Task::totalAssignedTasksNotStarted()
                     ->latest()
                     ->paginate(5);
 
@@ -96,8 +95,7 @@ class TaskController extends Controller
 
     public function completed()
     {
-        $tasks = Task::where('created_by', auth()->user()->id)
-                    ->where('status_id', Task::COMPLETED)
+        $tasks = Task::totalAssignedTasksCompleted()
                     ->latest()
                     ->paginate(5);
 
