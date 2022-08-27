@@ -77,8 +77,7 @@ class TaskController extends Controller
 
     public function started()
     {
-        $tasks = Task::withoutGlobalScope('user')
-                    ->totalAssignedTasksStarted()
+        $tasks = Task::totalAssignedTasksStarted()
                     ->latest()
                     ->paginate(5);
 
@@ -87,8 +86,7 @@ class TaskController extends Controller
 
     public function notStarted()
     {
-        $tasks = Task::withoutGlobalScope('user')
-                    ->totalAssignedTasksNotStarted()
+        $tasks = Task::totalAssignedTasksNotStarted()
                     ->latest()
                     ->paginate(5);
 
@@ -97,8 +95,7 @@ class TaskController extends Controller
 
     public function completed()
     {
-        $tasks = Task::withoutGlobalScope('user')
-                    ->totalAssignedTasksCompleted()
+        $tasks = Task::totalAssignedTasksCompleted()
                     ->latest()
                     ->paginate(5);
 

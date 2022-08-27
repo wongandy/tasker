@@ -10,10 +10,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalAssignedTasks = Task::withoutGlobalScope('user')->totalAssignedTasks()->count();
-        $totalAssignedTasksStarted = Task::withoutGlobalScope('user')->totalAssignedTasksStarted()->count();
-        $totalAssignedTasksNotStarted = Task::withoutGlobalScope('user')->totalAssignedTasksNotStarted()->count();
-        $totalAssignedTasksCompleted = Task::withoutGlobalScope('user')->totalAssignedTasksCompleted()->count();
+        $totalAssignedTasks = Task::totalAssignedTasks()->count();
+        $totalAssignedTasksStarted = Task::totalAssignedTasksStarted()->count();
+        $totalAssignedTasksNotStarted = Task::totalAssignedTasksNotStarted()->count();
+        $totalAssignedTasksCompleted = Task::totalAssignedTasksCompleted()->count();
 
         return view('admin.index', compact('totalAssignedTasks', 'totalAssignedTasksStarted', 'totalAssignedTasksNotStarted', 'totalAssignedTasksCompleted'));
     }

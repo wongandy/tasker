@@ -24,9 +24,11 @@ class Task extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope('user', function (Builder $builder) {
-            $builder->where('user_id', auth()->user()->id);
-        });
+        if (auth()->check() && ! auth()->user()->is_admin) {
+            static::addGlobalScope('user', function (Builder $builder) {
+                $builder->where('user_id', auth()->user()->id);
+            });
+        }
     }
 
     public function scopeStarted($query)
