@@ -11,9 +11,9 @@ class DashboardController extends Controller
     public function index()
     {
         $totalTasksStarted = Task::where('user_id', auth()->user()->id)->where('status_id', Task::STARTED)->count();
-        $totalTasksNotYetStarted = Task::where('user_id', auth()->user()->id)->where('status_id', Task::NOT_STARTED)->count();
+        $totalTasksNotStarted = Task::where('user_id', auth()->user()->id)->where('status_id', Task::NOT_STARTED)->count();
         $totalTasksCompleted = Task::where('user_id', auth()->user()->id)->where('status_id', Task::COMPLETED)->count();
 
-        return view('user.index', compact('totalTasksStarted', 'totalTasksNotYetStarted', 'totalTasksCompleted'));
+        return view('user.index', compact('totalTasksStarted', 'totalTasksNotStarted', 'totalTasksCompleted'));
     }
 }

@@ -23,7 +23,7 @@ class TaskFactory extends Factory
             'details' => fake()->sentence(1),
             'user_id' => User::where('is_admin', false)->get()->random()->id,
             'created_by' => User::where('is_admin', true)->get()->random()->id,
-            'status_id' => Statuses::where('name', 'Not yet started')->first()->id,
+            'status_id' => Statuses::where('name', 'Not started')->first()->id,
         ];
     }
 }
